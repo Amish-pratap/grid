@@ -1,6 +1,10 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
+import { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  const getLayout = (page: React.ReactElement) => (
+    <ChakraProvider value={defaultSystem}>{page}</ChakraProvider>
+  );
+
+  return getLayout(<Component {...pageProps} />);
 }
